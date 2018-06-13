@@ -1,0 +1,58 @@
+Use a usb disk
+
+1. fdisk - create a partition
+sudo fdisk /dev/sdb
+m - info on fdisk
+p - info about partion table
+d - delete partition
+g - label 'gpt' parttion table - allow more then 4 partition
+n - create a new partition within partition table (specify first and last sector)
+w - commit changes 
+
+2. create a new ext4 file system 
+sudo mkfs.ext4 /dev/sdb1
+
+3. Mount - where to access 
+sudo mkdir /mnt/storage
+sudo mount /dev/sdb1 /mnt/storage
+sudo chmod ugo+rw /mnt/storage   (we are only storing info and not running software on this drive so no need of execute permission)
+
+4. Verify
+touch /mnt/storage/test
+
+---------------------------------
+Make disk available even if system restarts
+
+/etc/fstab --> look for disk and mount it
+fs- storage device - /dev/sdb1 or UUID=
+mount - where in fs it should exist
+type - ext4
+options - defaults
+dump-0
+pass-0
+
+1. sudo blkid - give UUID
+2. sudo umount /mnt/storage
+3. sudo mount -a    (auto mount using fstab)
+4. df -h
+
+
+--------------------------------
+
+Connect to Network Storage
+
+
+1. To connect to storage device u need - username and password and IP address; make sure smb/cifs in turn on n/w storage device
+2. mount n/w share is similar to mount a disk
+
+3. sudo apt-get install cifs-utils
+4. sudo mkdir /mnt/networkdisk
+5. sudo mount -t cifs //ip_add/share_folder /mnt/networkdisk -o user=username,password=password
+6. df -h
+7. sudo /etc/fstab
+//ip_add/share_folder /mnt/networkdisk cifs user=username,password=password   0 0
+
+-----------------------------------------
+Security 
+-----------------------------------------
+
