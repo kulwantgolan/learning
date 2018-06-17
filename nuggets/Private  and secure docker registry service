@@ -1,0 +1,52 @@
+#using docker machine and compose
+1. Create docker machine on cloud
+# set up VM with public IP
+ 
+
+
+
+
+
+
+2. Run nginx service as docker container
+#Run nginx on port 80 as container mapped to port 80 to host
+
+
+
+
+
+
+
+3. Create domain name and configure
+# create domain name and point to public IP of VM
+
+
+
+
+
+
+4. Run registry service as docker container
+# Run registry service as container on same host (port 5000)
+
+
+
+
+
+
+
+
+5. Run proxy nginx to registry
+
+
+6. Configure SSL with trusted cert
+# Configure SSL on nginx (i.e nginx listening on port 443) . SSL is using a cert from a trusted auhhority
+
+7. Enable basic auth - only authorised user can access registry
+
+
+
+
+
+8. Manage repositories using docker
+
+
