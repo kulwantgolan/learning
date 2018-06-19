@@ -1,0 +1,5 @@
+Docker editions:
+1. Community - Docker engine, swarm, N/w, security
+2. Enterprise - 3 types Basic, STD, Advanced(image scanning)
+
+Docker EE provide - Universal control plane and Docker Trusted Registry
